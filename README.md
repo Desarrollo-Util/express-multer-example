@@ -15,53 +15,46 @@
 </div>
 
 <div align="center">
-  <h1>Node.JS Template</h1>
-  <p>
-    Template for the projects developed in the Node.JS course of the LearnThis Academy elearning platform.
-    <br />
-    <br />
-    <a style='font-size:16px' href="https://learnthisacademy.com" target='_blank'><strong>Explore LearnThis</strong></a>
-    <br />
-    <br />
-  </p>
-
+  <h1>Subida y descarga de archivos</h1>
 </div>
 
-<!-- BUILT WITH -->
+## Conceptos teóricos
 
-## About The Project
+-   La subida de archivos por http tiene un estandar marcado
+-   Este estandar indica que el content-type de la solicitud debe ser de tipo multipart/form-data y un boundary.
+-   Lo primero indica el tipo de solicitud, que habitualmente es una serie de campos de un formulario, estos campos pueden contener texto plano o un archivo.
+-   El boundary, es una secuencia de caracteres que sirve para diferenciar cada una de las partes del mensaje http, ya que todos los campos que se envian van juntos entonces es necesario saber cuando acaba uno y empieza el siguiente.
+-   Cuando enviamos la solicitud desde un cliente HTTP o un navegador web, el boundary y el body se crean automaticamente, no tenemos que poner manualmente los content-disposition o content-type. En JS simplemente añadimos la información del formulario y el content type multipart
+-   En el servidor debemos obtener cada uno de los valores o archivos, validarlos y almacenarlos o lo que queramos hacer con ellos.
+-
 
-The objective of the project is to provide a base project with the minimum necessary tools to develop a project based on Node.JS.
+## Ejemplo de una solicitud HTTP
 
-<!-- BUILT WITH -->
+**Headers**
 
-## Built With
+POST /uploads HTTP/1.2
+Host: example.com
+Content-Type: multipart/form-data;boundary=------------------------d74496d66958873e
 
-A number of tools have been added to improve the development experience and provide a good structure for any type of project.
+**Body**
 
--   [ESLint](https://eslint.org/) -> Statically analyzes your code to quickly find problems
--   [Standard.js](https://standardjs.com/) -> Configuration template for ESLint
--   [Prettier](https://prettier.io/) -> Opinionated code formatter
--   [Nodemon](https://www.npmjs.com/package/nodemon) -> Simple monitor script for use during development
--   [Lint-staged](https://www.npmjs.com/package/lint-staged) -> Runs linter and formatter before commits
+**--------------------------d74496d66958873e**
+Content-Disposition: form-data; name="person"
 
-<!-- USAGE -->
+anonymous
+**--------------------------d74496d66958873e**
+Content-Disposition: form-data; name="secret"; filename="file.txt"
+Content-Type: text/plain
 
-## Usage
+contents of the file
+**--------------------------d74496d66958873e**
+Content-Disposition: form-data; name="imagen1"; filename="Solucion.png"
+Content-Type: image/png
 
-```
-👍 Click on USE THIS TEMPLATE button 👍
-```
-
-In this way you will create your project based on the following template
-
-After creating the repository and cloning it locally
-
-```
-npm i
-```
-
-<!-- LICENSE -->
+�PNG
+→
+IHDR♦9☺♠`�D�☺sRGB��∟�♦gAMA�� �a♣ pHYs��☺�o�d��IDATx^���D ND�B`�
+**--------------------------d74496d66958873e**--
 
 ## License
 
